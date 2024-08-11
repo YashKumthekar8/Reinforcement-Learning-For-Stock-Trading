@@ -1,6 +1,6 @@
 # Deep-Reinforcement-Stock-Trading
 
-This project intends to leverage deep reinforcement learning in portfolio management. The framework structure is inspired by [Q-Trader](https://github.com/edwardhdlu/q-trader). The reward for agents is the net unrealized (meaning the stocks are still in portfolio and not cashed out yet) profit evaluated at each action step. For inaction at each step, a negtive penalty is added to the portfolio as the missed opportunity to invest in "risk-free" Treasury bonds. A lot of new features and improvements are made in the training and evaluation pipelines. All evaluation metrics and visualizations are built from scratch.
+This project intends to leverage deep reinforcement learning in portfolio management. The framework structure is inspired by [Q-Trader](https://github.com/edwardhdlu/q-trader). The reward for agents is the net unrealized (meaning the stocks are still in portfolio and not cashed out yet) profit evaluated at each action step. For inaction at each step, a negtive penalty is added to the portfolio as the missed opportunity to invest in "risk-free" Treasury bonds. All evaluation metrics and visualizations are built from scratch.
 
 Key assumptions and limitations of the current framework:
 - trading has no impact on the market
@@ -18,7 +18,7 @@ Key challenges of the current framework:
 
 Currently, the state is defined as the normalized adjacent daily stock price differences for `n` days plus  `[stock_price, balance, num_holding]`.
 
-In the future, we plan to add other state-of-the-art deep reinforcement learning algorithms, such as Proximal Policy Optimization (PPO), to the framework and increase the complexity to the state in each algorithm by constructing more complex price tensors etc. with a wider range of deep learning approaches, such as convolutional neural networks or attention mechanism. In addition, we plan to integrate better pipelines for high quality data source, e.g. from vendors like [Quandl](https://www.quandl.com/); and backtesting, e.g. [zipline](https://github.com/quantopian/zipline).
+In the future, we plan to add other state-of-the-art deep reinforcement learning algorithms, such as Proximal Policy Optimization (PPO), to the framework and increase the complexity to the state in each algorithm by constructing more complex price tensors etc. with a wider range of deep learning approaches, such as convolutional neural networks or attention mechanism.
 
 ### Getting Started
 To install all libraries/dependencies used in this project, run
@@ -53,23 +53,3 @@ To visualize training loss and portfolio value fluctuations history, run:
 tensorboard --logdir=logs/model_events
 ```
 where `model_events` can be found in `logs` directory.
-
-### Example Results
-Note that the following results were obtained with 10 epochs of training only. 
-![alt_text](./visualizations/DQN_^GSPC_2014.png)
-
-![alt_text](./visualizations/DDPG_^GSPC_2018.png)
-
-### Frequently Asked Questions (FAQ)
-- How is this project different from other price prediction approaches, such as logistic regression or LSTM?
-  - Price prediction approaches like logistic regression have numerical outputs, which have to be mapped (through some interpretation of the predicted price) to action space (e.g. buy, sell, hold) separately. On the other hand, reinforcement learning approaches directly output the agent's action.
-
-
-### References:
-- [Deep Q-Learning with Keras and Gym](https://keon.io/deep-q-learning/)
-- [Double Deep Q Networks](https://towardsdatascience.com/double-deep-q-networks-905dd8325412)
-- [Using Keras and Deep Deterministic Policy Gradient to play TORCS](https://yanpanlau.github.io/2016/10/11/Torcs-Keras.html)
-- [Practical Deep Reinforcement Learning Approach for Stock Trading](https://arxiv.org/abs/1811.07522)
-- [Introduction to Learning to Trade with Reinforcement Learning](http://www.wildml.com/)
-- [Adversarial Deep Reinforcement Learning in Portfolio Management](https://arxiv.org/abs/1808.09940)
-- [A Deep Reinforcement Learning Framework for the Financial Portfolio Management Problem](https://arxiv.org/abs/1706.10059)
